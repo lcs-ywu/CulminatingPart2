@@ -19,6 +19,7 @@ class ParameterController: NSViewController {
     @IBOutlet weak var hueBox: ColorView!
     @IBOutlet weak var hueSlider: NSSlider!
     @IBOutlet weak var showAnimationButton: NSButton!
+    @IBOutlet weak var rowSlider: NSSlider!
     
     // MARK: Methods
     override func viewDidLoad() {
@@ -48,6 +49,9 @@ class ParameterController: NSViewController {
 
             // Pass some information forward to the sketch
             vc.sketch.color = Color(hue: Float(hueSlider.doubleValue), saturation: 80, brightness: 90, alpha: 100)
+            
+            // Pass the number of rows
+            vc.sketch.rows = rowSlider.integerValue
             
             // Save a reference to the child sketch
             childSketch = vc

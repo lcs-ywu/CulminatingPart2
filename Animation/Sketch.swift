@@ -25,6 +25,9 @@ class Sketch : NSObject {
     // Control the colour of the fill
     var color : Color = .black
     
+    // Control the number of rows
+    var rows : Int = 50
+    
     // This function runs once
     override init() {
         
@@ -106,6 +109,8 @@ class Sketch : NSObject {
     //
     // This function runs repeatedly, forever, to create the animated effect
     func draw() {
+        
+        print("number of rows is \(rows)")
         
         //clear the canvas
         clearCanvas()
