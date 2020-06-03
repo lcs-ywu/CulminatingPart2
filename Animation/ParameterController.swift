@@ -20,12 +20,18 @@ class ParameterController: NSViewController {
     @IBOutlet weak var hueSlider: NSSlider!
     @IBOutlet weak var showAnimationButton: NSButton!
     @IBOutlet weak var rowSlider: NSSlider!
+    @IBOutlet weak var initialLWSS: NSButton!
+    @IBOutlet weak var initialGosper: NSButton!
+    @IBOutlet weak var initialRandom: NSButton!
+    @IBOutlet weak var shapeCircle: NSButton!
+    @IBOutlet weak var shapeSquare: NSButton!
     
     // MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        
+    }
+    @IBAction func radioButtonChanged(_ sender: AnyObject) {
         
     }
 

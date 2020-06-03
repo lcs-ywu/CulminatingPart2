@@ -20,7 +20,7 @@ class Sketch : NSObject {
     var numberRow = Array(repeating: 0, count: 50)
     
     // Define cell width and height
-    let size = 10
+    var size = 10
     
     // Control the colour of the fill
     var color : Color = .black
@@ -32,17 +32,20 @@ class Sketch : NSObject {
     override init() {
         
         // Create canvas object – specify size
-        canvas = Canvas(width: 500, height: 500)
+        canvas = Canvas(width: rows*10, height: rows*10)
         
         // Set the fill color
         canvas.fillColor = color
         
+        row = Array(repeating: false, count: rows)
+        numberRow = Array(repeating: 0, count: rows)
+        
         // Iterate through the rows
-        for _ in 1...50 {
+        for _ in 1...rows {
             board.append(row)
         }
         
-        for _ in 1...50 {
+        for _ in 1...rows {
             numberBoard.append(numberRow)
         }
         
@@ -167,7 +170,7 @@ class Sketch : NSObject {
     // Introduce a function that checks how many living and dead cells are around a cell
     func numberOfCellsAliveAround(row:Int, column:Int)->Int{
         var numberAlive = 0
-        // Need to find a way when index is out of range?
+        // Need to find a way when index is out of range
         for x in row-1...row+1 {
             for y in column-1...column+1{
                 if board[x][y] == true{
