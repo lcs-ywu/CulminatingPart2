@@ -100,7 +100,7 @@
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jdj-qB-iZ7">
                                 <rect key="frame" x="298" y="217" width="96" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" alignment="left" minValue="50" maxValue="80" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="6cJ-3i-Dqx"/>
+                                <sliderCell key="cell" alignment="left" minValue="50" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="6cJ-3i-Dqx"/>
                             </slider>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cqX-Ll-VZR">
                                 <rect key="frame" x="129" y="141" width="144" height="18"/>

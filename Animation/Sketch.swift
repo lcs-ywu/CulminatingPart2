@@ -20,7 +20,7 @@ class Sketch : NSObject {
     var numberRow = Array(repeating: 0, count: 50)
     
     // Define cell width and height
-    var size = 10
+    var size: Int = 10
     
     // Control the initial colour of the fill
     // This will be updated by the slider in the Parameter screen
@@ -36,22 +36,13 @@ class Sketch : NSObject {
     override init() {
         
         // Create canvas object – specify size
-        canvas = Canvas(width: rows*10, height: rows*10)
+        canvas = Canvas(width: 500, height: 500)
         
         // Set the fill color
         canvas.fillColor = color
         
-        row = Array(repeating: false, count: rows)
-        numberRow = Array(repeating: 0, count: rows)
+        size = Int(500/rows)
         
-        // Iterate through the rows
-        for _ in 1...rows {
-            board.append(row)
-        }
-        
-        for _ in 1...rows {
-            numberBoard.append(numberRow)
-        }
         
     }
     
@@ -59,12 +50,17 @@ class Sketch : NSObject {
     // This function runs repeatedly, forever, to create the animated effect
     func draw() {
         
+        print("number of rows is \(rows)")
+        print(size)
+        
         // On the first frame, set the pattern type
         if canvas.frameCount == 0 {
             setUpBoard()
+            setUpRowsAndColumns()
         }
         
         print("number of rows is \(rows)")
+        print(size)
         
         //clear the canvas
         clearCanvas()
@@ -202,8 +198,23 @@ class Sketch : NSObject {
             board[9][43] = true
         default:
             // TODO: Write random board
-            break
+            for _ in 1...20{
+                board[random(from: 1, to: 49)][random(from: 1, to: 49)] = true
+            }
         }
+    }
+    func setUpRowsAndColumns() {
+        row = Array(repeating: false, count: rows)
+        numberRow = Array(repeating: 0, count: rows)
+        
+        // Iterate through the rows
+        for _ in 1...rows {
+            board.append(row)
+        }
+        for _ in 1...rows {
+            numberBoard.append(numberRow)
+        }
+        
     }
 }
 
