@@ -149,6 +149,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="shapeRadioButtonChanged:" target="DhV-UY-Qd3" id="SLs-33-f0g"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LMa-ly-LET">
                                 <rect key="frame" x="259" y="73" width="77" height="18"/>
@@ -156,6 +159,9 @@
                                 <buttonCell key="cell" type="radio" title="quadrate" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="E56-zP-QCB">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <action selector="shapeRadioButtonChanged:" target="DhV-UY-Qd3" id="1IW-Ed-gvH"/>
+                                    </connections>
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cgN-6U-T4O">

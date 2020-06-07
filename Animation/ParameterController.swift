@@ -31,9 +31,15 @@ class ParameterController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
     }
-    @IBAction func radioButtonChanged(_ sender: AnyObject) {
-        
+    @IBAction func radioButtonChanged(_ sender: NSButtonCell) {
+        print(sender.title)
     }
+    
+    @IBAction func shapeRadioButtonChanged(_ sender: NSButtonCell) {
+        
+        print(sender.title)
+    }
+    
 
     // This is called when the slider's value changes
     @IBAction func valueChanged(_ sender: NSSliderCell) {
@@ -51,16 +57,16 @@ class ParameterController: NSViewController {
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
-        if let vc = segue.destinationController as? ViewController {
+        if let animationController = segue.destinationController as? ViewController {
 
             // Pass some information forward to the sketch
-            vc.sketch.color = Color(hue: Float(hueSlider.doubleValue), saturation: 80, brightness: 90, alpha: 100)
+            animationController.sketch.color = Color(hue: Float(hueSlider.doubleValue), saturation: 80, brightness: 90, alpha: 100)
             
             // Pass the number of rows
-            vc.sketch.rows = rowSlider.integerValue
+            animationController.sketch.rows = rowSlider.integerValue
             
             // Save a reference to the child sketch
-            childSketch = vc
+            childSketch = animationController
 
         }
     }

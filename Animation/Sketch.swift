@@ -22,7 +22,8 @@ class Sketch : NSObject {
     // Define cell width and height
     var size = 10
     
-    // Control the colour of the fill
+    // Control the initial colour of the fill
+    // This will be updated by the slider in the Parameter screen
     var color : Color = .black
     
     // Control the number of rows
