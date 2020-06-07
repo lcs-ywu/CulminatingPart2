@@ -29,6 +29,9 @@ class Sketch : NSObject {
     // Control the number of rows
     var rows : Int = 50
     
+    // Control the animation type
+    var animationPattern: GameOfLifePattern = .Random
+    
     // This function runs once
     override init() {
         
@@ -50,69 +53,16 @@ class Sketch : NSObject {
             numberBoard.append(numberRow)
         }
         
-        // Initial values HERE
-        //NOTE: board[y-value][x-value]
-        
-        // Pattern 1: LWSS and Glider
-        
-//        board[10][40] = true
-//        board[11][40] = true
-//        board[12][40] = true
-//        board[13][40] = true
-//        board[13][41] = true
-//        board[13][42] = true
-//        board[12][43] = true
-//        board[9][41] = true
-//        board[9][43] = true
-        
-        // Pattern 2: Gosper's Glider Gun
-        board[40][8] = true
-        board[41][8] = true
-        board[40][9] = true
-        board[41][9] = true
-        board[39][20] = true
-        board[40][20] = true
-        board[41][20] = true
-        board[42][20] = true
-        board[43][20] = true
-        board[38][21] = true
-        board[40][21] = true
-        board[41][21] = true
-        board[42][21] = true
-        board[44][21] = true
-        board[39][22] = true
-        board[43][22] = true
-        board[40][23] = true
-        board[41][23] = true
-        board[42][23] = true
-        board[41][24] = true
-        board[39][25] = true
-        board[40][25] = true
-        board[38][26] = true
-        board[40][26] = true
-        board[38][27] = true
-        board[40][27] = true
-        board[39][28] = true
-        board[36][31] = true
-        board[37][31] = true
-        board[39][31] = true
-        board[41][31] = true
-        board[42][31] = true
-        board[36][32] = true
-        board[42][32] = true
-        board[37][33] = true
-        board[41][33] = true
-        board[38][34] = true
-        board[39][34] = true
-        board[40][34] = true
-        board[38][42] = true
-        board[39][42] = true
-        board[38][43] = true
-        board[39][43] = true
     }
+    
     //
     // This function runs repeatedly, forever, to create the animated effect
     func draw() {
+        
+        // On the first frame, set the pattern type
+        if canvas.frameCount == 0 {
+            setUpBoard()
+        }
         
         print("number of rows is \(rows)")
         
@@ -136,7 +86,7 @@ class Sketch : NSObject {
                 }
                 canvas.drawRectangle(at: Point(x: column * size, y: row * size), width: size, height: size)
                 // Try make the cells round
-//                canvas.drawEllipse(at: Point(x: column * size, y: row * size), width: size, height: size)
+                //                canvas.drawEllipse(at: Point(x: column * size, y: row * size), width: size, height: size)
                 
             }
         }
@@ -145,7 +95,7 @@ class Sketch : NSObject {
             for column in 1...board[row].count - 2 {
                 
                 numberBoard[row][column] = numberOfCellsAliveAround(row: row, column: column)
-               
+                
             }
         }
         // Change the status of every cell
@@ -190,6 +140,70 @@ class Sketch : NSObject {
         canvas.fillColor = .white
         canvas.drawRectangle(at: Point(x:0, y:0), width: canvas.width, height: canvas.height)
         canvas.drawShapesWithBorders = true
+    }
+    
+    func setUpBoard() {
+        // Initial values HERE
+        //NOTE: board[y-value][x-value]
+        switch animationPattern {
+        case .GospersGliderGun:
+            board[40][8] = true
+            board[41][8] = true
+            board[40][9] = true
+            board[41][9] = true
+            board[39][20] = true
+            board[40][20] = true
+            board[41][20] = true
+            board[42][20] = true
+            board[43][20] = true
+            board[38][21] = true
+            board[40][21] = true
+            board[41][21] = true
+            board[42][21] = true
+            board[44][21] = true
+            board[39][22] = true
+            board[43][22] = true
+            board[40][23] = true
+            board[41][23] = true
+            board[42][23] = true
+            board[41][24] = true
+            board[39][25] = true
+            board[40][25] = true
+            board[38][26] = true
+            board[40][26] = true
+            board[38][27] = true
+            board[40][27] = true
+            board[39][28] = true
+            board[36][31] = true
+            board[37][31] = true
+            board[39][31] = true
+            board[41][31] = true
+            board[42][31] = true
+            board[36][32] = true
+            board[42][32] = true
+            board[37][33] = true
+            board[41][33] = true
+            board[38][34] = true
+            board[39][34] = true
+            board[40][34] = true
+            board[38][42] = true
+            board[39][42] = true
+            board[38][43] = true
+            board[39][43] = true
+        case .LWSS:
+            board[10][40] = true
+            board[11][40] = true
+            board[12][40] = true
+            board[13][40] = true
+            board[13][41] = true
+            board[13][42] = true
+            board[12][43] = true
+            board[9][41] = true
+            board[9][43] = true
+        default:
+            // TODO: Write random board
+            break
+        }
     }
 }
 

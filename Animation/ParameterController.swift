@@ -14,6 +14,7 @@ class ParameterController: NSViewController {
     // MARK: Properties
     var childSketch: ViewController?
     var childSketchVisible = false
+    var selectedPattern: GameOfLifePattern = .Random
     
     // MARK: Outlets
     @IBOutlet weak var hueBox: ColorView!
@@ -33,6 +34,17 @@ class ParameterController: NSViewController {
     }
     @IBAction func radioButtonChanged(_ sender: NSButtonCell) {
         print(sender.title)
+        
+        switch sender.title! {
+        case "Gosper's Glider Gun":
+            selectedPattern = .GospersGliderGun
+        case "LWSS":
+            selectedPattern = .LWSS
+        default:
+            selectedPattern = .Random
+        }
+        
+        print(self.selectedPattern)
     }
     
     @IBAction func shapeRadioButtonChanged(_ sender: NSButtonCell) {
@@ -55,6 +67,7 @@ class ParameterController: NSViewController {
         childSketch?.sketch.color = Color(hue: Float(hueSlider.doubleValue), saturation: 80, brightness: 90, alpha: 100)
     }
     
+    // When "Show Animation" is first clicked, this will be invoked once
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
         if let animationController = segue.destinationController as? ViewController {
@@ -64,6 +77,9 @@ class ParameterController: NSViewController {
             
             // Pass the number of rows
             animationController.sketch.rows = rowSlider.integerValue
+            
+            // Pass the pattern selection
+            animationController.sketch.animationPattern = selectedPattern
             
             // Save a reference to the child sketch
             childSketch = animationController
