@@ -15,6 +15,7 @@ class ParameterController: NSViewController {
     var childSketch: ViewController?
     var childSketchVisible = false
     var selectedPattern: GameOfLifePattern = .Random
+    var selectedShape: ShapeOfCells = .squares
     
     // MARK: Outlets
     @IBOutlet weak var hueBox: ColorView!
@@ -33,7 +34,7 @@ class ParameterController: NSViewController {
         // Do view setup here.
     }
     @IBAction func radioButtonChanged(_ sender: NSButtonCell) {
-        print(sender.title)
+//        print(sender.title)
         
         switch sender.title! {
         case "Gosper's Glider Gun":
@@ -49,7 +50,13 @@ class ParameterController: NSViewController {
     
     @IBAction func shapeRadioButtonChanged(_ sender: NSButtonCell) {
         
-        print(sender.title)
+//        print(sender.title)
+        switch sender.title! {
+        case "round":
+            selectedShape = .circles
+        default:
+            selectedShape = .squares
+        }
     }
     
 
@@ -80,6 +87,9 @@ class ParameterController: NSViewController {
             
             // Pass the pattern selection
             animationController.sketch.animationPattern = selectedPattern
+            
+            // Pass the shape selection
+            animationController.sketch.shapeOfCells = selectedShape
             
             // Save a reference to the child sketch
             childSketch = animationController

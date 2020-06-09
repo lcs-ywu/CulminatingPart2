@@ -32,6 +32,9 @@ class Sketch : NSObject {
     // Control the animation type
     var animationPattern: GameOfLifePattern = .Random
     
+    var shapeOfCells: ShapeOfCells = .squares 
+    
+    
     // This function runs once
     override init() {
         
@@ -41,7 +44,6 @@ class Sketch : NSObject {
         // Set the fill color
         canvas.fillColor = color
         
-        size = Int(500/rows)
         
         
     }
@@ -50,20 +52,16 @@ class Sketch : NSObject {
     // This function runs repeatedly, forever, to create the animated effect
     func draw() {
         
-        print("number of rows is \(rows)")
-        print(size)
-        
         // On the first frame, set the pattern type
         if canvas.frameCount == 0 {
-            setUpBoard()
             setUpRowsAndColumns()
+              setUpBoard()
         }
-        
-        print("number of rows is \(rows)")
-        print(size)
         
         //clear the canvas
         clearCanvas()
+        //        print("number of rows is \(rows)")
+        //        print(size)
         
         //remove the borders for all shapes to make it looks better
         canvas.drawShapesWithBorders = false
@@ -73,19 +71,21 @@ class Sketch : NSObject {
         
         // Iterate over all the rows and columns
         // Draw a filled black square when a value is true
-        for row in 0...board.count - 1 {
-            for column in 0...board[row].count - 1 {
-                if board[row][column] == true {
-                    canvas.drawShapesWithFill = true
-                } else {
-                    canvas.drawShapesWithFill = false
-                }
-                canvas.drawRectangle(at: Point(x: column * size, y: row * size), width: size, height: size)
-                // Try make the cells round
-                //                canvas.drawEllipse(at: Point(x: column * size, y: row * size), width: size, height: size)
-                
-            }
-        }
+//        for row in 0...board.count - 1 {
+//            for column in 0...board[row].count - 1 {
+//                if board[row][column] == true {
+//                    canvas.drawShapesWithFill = true
+//                } else {
+//                    canvas.drawShapesWithFill = false
+//                }
+//                canvas.drawRectangle(at: Point(x: column * size, y: row * size), width: size, height: size)
+//                // Try make the cells round
+//                //                canvas.drawEllipse(at: Point(x: column * size, y: row * size), width: size, height: size)
+//
+//            }
+//        }
+        drawCells()
+        
         // Count the number of cells alive around each cell and stored the data in the number board
         for row in 1...board.count - 2 {
             for column in 1...board[row].count - 2 {
@@ -198,8 +198,8 @@ class Sketch : NSObject {
             board[9][43] = true
         default:
             // TODO: Write random board
-            for _ in 1...20{
-                board[random(from: 1, to: 49)][random(from: 1, to: 49)] = true
+            for _ in 1...rows*rows-10{
+                board[random(from: 1, to: rows-1)][random(from: 1, to: rows-1)] = true
             }
         }
     }
@@ -214,7 +214,29 @@ class Sketch : NSObject {
         for _ in 1...rows {
             numberBoard.append(numberRow)
         }
+        size = Int(500/rows)
+        print(rows)
+        print(size)
         
+    }
+    func drawCells(){
+        // Iterate over all the rows and columns
+        // Draw a filled black square when a value is true
+        for row in 0...board.count - 1 {
+            for column in 0...board[row].count - 1 {
+                if board[row][column] == true {
+                    canvas.drawShapesWithFill = true
+                } else {
+                    canvas.drawShapesWithFill = false
+                }
+                switch shapeOfCells {
+                case .circles:
+                    canvas.drawEllipse(at: Point(x: column * size, y: row * size), width: size, height: size)
+                default:
+                    canvas.drawRectangle(at: Point(x: column * size, y: row * size), width: size, height: size)
+                }
+            }
+        }
     }
 }
 
