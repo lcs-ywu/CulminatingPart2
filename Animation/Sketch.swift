@@ -55,7 +55,7 @@ class Sketch : NSObject {
         // On the first frame, set the pattern type
         if canvas.frameCount == 0 {
             setUpRowsAndColumns()
-              setUpBoard()
+            setUpBoard()
         }
         
         //clear the canvas
@@ -71,19 +71,19 @@ class Sketch : NSObject {
         
         // Iterate over all the rows and columns
         // Draw a filled black square when a value is true
-//        for row in 0...board.count - 1 {
-//            for column in 0...board[row].count - 1 {
-//                if board[row][column] == true {
-//                    canvas.drawShapesWithFill = true
-//                } else {
-//                    canvas.drawShapesWithFill = false
-//                }
-//                canvas.drawRectangle(at: Point(x: column * size, y: row * size), width: size, height: size)
-//                // Try make the cells round
-//                //                canvas.drawEllipse(at: Point(x: column * size, y: row * size), width: size, height: size)
-//
-//            }
-//        }
+        //        for row in 0...board.count - 1 {
+        //            for column in 0...board[row].count - 1 {
+        //                if board[row][column] == true {
+        //                    canvas.drawShapesWithFill = true
+        //                } else {
+        //                    canvas.drawShapesWithFill = false
+        //                }
+        //                canvas.drawRectangle(at: Point(x: column * size, y: row * size), width: size, height: size)
+        //                // Try make the cells round
+        //                //                canvas.drawEllipse(at: Point(x: column * size, y: row * size), width: size, height: size)
+        //
+        //            }
+        //        }
         drawCells()
         
         // Count the number of cells alive around each cell and stored the data in the number board
